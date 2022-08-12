@@ -1,0 +1,31 @@
+.name {
+    color: #007BFC;
+    font-family: Helvetica, Sans-Serif;
+    font-size: 12.8px;
+    margin: 0px 0px 0px -2px;
+    padding: 0px 0px 0px 2px;
+}
+
+.login {
+    color: #06cf9c;
+    font-size: 12.8px;
+    font-family: Helvetica, Sans-Serif;
+    font-weight: bold;
+    margin: 0px 0px 0px -2px;
+    padding: 0px 0px 0px 2px;
+}
+
+.logout {
+    color: #e61512;
+    font-size: 12.8px;
+    font-family: Helvetica, Sans-Serif;
+    margin: 0px 0px 0px -2px;
+    padding: 0px 0px 0px 2px;
+}
+
+.time {
+    color: #667781;
+    font-size: 11px;
+    position: relative;
+    float: right;
+}
