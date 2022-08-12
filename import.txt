@@ -1,0 +1,45 @@
+-----------------------------------------------------------------------------------------
+Crear proyecto: Cliente Chat Personal
+-----------------------------------------------------------------------------------------
+    > npx create-react-app react_client_chat_pwa_app --template cra-template-pwa
+-----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
+Dependencias:
+-----------------------------------------------------------------------------------------
+  - npm i bootstrap
+  - npm i axios
+  - npm i socket.io-client
+
+  - publicar: npm start
+-----------------------------------------------------------------------------------------
+  - CND:
+   -> <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+   -> <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+-----------------------------------------------------------------------------------------
+  - Crear carpetas:
+    - components
+-----------------------------------------------------------------------------------------
+Cambiar el puerto de conexion del cliente
+-----------------------------------------------------------------------------------------
+  - Crear archivo .env
+    PORT=3001
+-----------------------------------------------------------------------------------------
+Puntos importantes
+-----------------------------------------------------------------------------------------
+  1.- Concatenar Clases en React
+    <div className={"card-body ".concat(styles ? styles.scroll : "")}>
+
+  2.- Agregar un div con scroll a una posicion de la vista 
+        const divRef = useRef(null);
+        
+        useEffect(() => {
+          divRef.current.scrollIntoView({ bahavior: "smooth" });
+        });
+
+        ...
+        return (
+          '''
+          <div ref={divRef}></div>        
+        )
+-----------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
