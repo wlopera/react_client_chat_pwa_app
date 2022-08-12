@@ -23,4 +23,8 @@ ver: https://github.com/wlopera/node-server-chat-personal
 ### Neymar sierra la sesión
 ![Captura9](https://user-images.githubusercontent.com/7141537/184449087-08d8660b-5bab-458a-a06f-7f9bc9487e04.PNG)
 
+### Ajuste de tipo y hora. Agregar colores
+![Captura](https://user-images.githubusercontent.com/7141537/184454913-96b96ae5-8443-4035-9ebb-ca40abaefead.PNG)
+
+
 
