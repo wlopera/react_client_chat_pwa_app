@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 
 import Card from "./Card";
+import CardMessage from "./CardMessage";
 import styles from "./Messages.module.css";
 
 const Messages = ({ data }) => {
@@ -15,7 +16,7 @@ const Messages = ({ data }) => {
       <Card title="Mensajes" styles={styles}>
         <div>
           {data.map((obj, index) => (
-            <div key={index}>{obj.message}</div>
+            <CardMessage key={index} obj={obj} />
           ))}
           <div ref={divRef}></div>
         </div>
