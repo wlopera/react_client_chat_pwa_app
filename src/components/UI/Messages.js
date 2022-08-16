@@ -4,7 +4,7 @@ import Card from "./Card";
 import CardMessage from "./CardMessage";
 import styles from "./Messages.module.css";
 
-const Messages = ({ data }) => {
+const Messages = ({ data, username }) => {
   const divRef = useRef(null);
 
   useEffect(() => {
@@ -13,10 +13,10 @@ const Messages = ({ data }) => {
 
   return (
     <div>
-      <Card title="Mensajes" styles={styles}>
+      <Card title={`Mensajes - ${username}`} styles={styles}>
         <div>
           {data.map((obj, index) => (
-            <CardMessage key={index} obj={obj} />
+            <CardMessage key={index} obj={obj} username={username} />
           ))}
           <div ref={divRef}></div>
         </div>

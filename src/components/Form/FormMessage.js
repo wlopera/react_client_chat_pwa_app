@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { MdSend } from "react-icons/md";
+
 import Card from "../UI/Card";
 
 const FormMessage = ({ onMessage }) => {
@@ -14,23 +16,35 @@ const FormMessage = ({ onMessage }) => {
     setMessage("");
   };
 
+  const handleKeyPress = (e) => {
+    if (e.keyCode === 13) {
+      onMessage(message);
+      setMessage("");
+    }
+  };
+
   return (
-    <Card title="Enviar mensajes">
+    <Card>
       <form onSubmit={handleSendMessage}>
-        <div className="mb-3">
-          <textarea
-            className="form-control"
-            placeholder="Introduzca su mensaje"
-            id="floatingTextarea"
-            value={message}
-            onChange={handleSetMessage}
-            cols="30"
-            rows="3"
-          ></textarea>
+        <div className="row">
+          <div className="col-11">
+            <textarea
+              className="form-control"
+              placeholder="Introduzca su mensaje"
+              id="floatingTextarea"
+              value={message}
+              onChange={handleSetMessage}
+              onKeyDown={handleKeyPress}
+              cols="30"
+              rows="1"
+            ></textarea>
+          </div>
+          <div className="col-1 items-content-center">
+            <h2>
+              <MdSend onClick={handleSendMessage} />
+            </h2>
+          </div>
         </div>
-        <button type="submit" className="btn btn-primary">
-          Enviar
-        </button>
       </form>
     </Card>
   );
