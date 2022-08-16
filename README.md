@@ -29,3 +29,23 @@ ver: https://github.com/wlopera/node-server-chat-personal
 ### Ajuste de estilos y colores
 ![Captura](https://user-images.githubusercontent.com/7141537/184986655-bc1e1d65-a006-4452-955b-3256ceb6fc6b.PNG)
 
+## importante para subir al repo remote
+
+### ChatPersonal\react_client_chat_pwa_app\public\runtime-config.js
+```
+window["runConfig"] = {
+  // BACKEND_URL: "http://localhost:8585", //Desarrollo
+  BACKEND_URL: "https://node-chat-personal.herokuapp.com/", // Produccion
+};
+
+```
+### ChatPersonal\react_client_chat_pwa_app\src\components\Socket.js
+```
+import io from "socket.io-client";
+const { BACKEND_URL } = window["runConfig"];
+
+const socket = io(BACKEND_URL);
+
+export default socket;
+
+```
