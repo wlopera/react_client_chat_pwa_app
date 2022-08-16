@@ -27,7 +27,7 @@ const Chat = ({ name }) => {
 
   return (
     <div>
-      <Messages data={messages} />
+      <Messages data={messages} username={name} />
       <FormMessage onMessage={sendMessage} />
     </div>
   );
