@@ -1,5 +1,6 @@
-import io from 'socket.io-client'
+import io from "socket.io-client";
+const { BACKEND_URL } = window["runConfig"];
 
-const socket = io('\\localhost:3000')
+const socket = io(BACKEND_URL);
 
-export default socket
+export default socket;
