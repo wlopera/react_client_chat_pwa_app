@@ -36,7 +36,7 @@ const FormMessage = ({ onMessage }) => {
               onChange={handleSetMessage}
               onKeyDown={handleKeyPress}
               cols="30"
-              rows="1"
+              rows="2"
             ></textarea>
           </div>
           <div className="col-1 items-content-center">
