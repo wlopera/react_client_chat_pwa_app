@@ -12,16 +12,14 @@ const Messages = ({ data, username }) => {
   });
 
   return (
-    <div>
-      <Card title={`Mensajes - ${username}`} styles={styles}>
-        <div>
-          {data.map((obj, index) => (
-            <CardMessage key={index} obj={obj} username={username} />
-          ))}
-          <div ref={divRef}></div>
-        </div>
-      </Card>
-    </div>
+    <Card title={`Mensajes - ${username}`} styles={styles}>
+      <div>
+        {data.map((obj, index) => (
+          <CardMessage key={index} obj={obj} username={username} />
+        ))}
+        <div ref={divRef}></div>
+      </div>
+    </Card>
   );
 };
 
