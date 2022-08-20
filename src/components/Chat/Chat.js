@@ -38,18 +38,7 @@ const Chat = ({ name }) => {
           });
         });
         return;
-      }
-      setMessages((currentMessages) => [...currentMessages, message]);
-      setUsers((currentUsers) => {
-        return currentUsers.map((user) => {
-          if (user.name === message.name) {
-            return { name: user.name, typing: "" };
-          }
-          return user;
-        });
-      });
-
-      if (message.type === "login") {
+      } else if (message.type === "login") {
         let newUsers = [];
         message.users.forEach((user) => {
           if (user.username) {
@@ -57,13 +46,23 @@ const Chat = ({ name }) => {
           }
         });
         setUsers(newUsers);
-      }
-
-      if (message.type === "logout") {
+        setMessages((currentMessages) => [...currentMessages, message]);
+      } else if (message.type === "logout") {
+        setMessages((currentMessages) => [...currentMessages, message]);
         setUsers((currentUsers) =>
-          currentUsers.filter((user) => user !== message.name)
+          currentUsers.filter((user) => user.name !== message.name)
         );
         socket.off();
+      } else {
+        setMessages((currentMessages) => [...currentMessages, message]);
+        setUsers((currentUsers) => {
+          return currentUsers.map((user) => {
+            if (user.name === message.name) {
+              return { name: user.name, typing: "" };
+            }
+            return user;
+          });
+        });
       }
     });
     return () => {
