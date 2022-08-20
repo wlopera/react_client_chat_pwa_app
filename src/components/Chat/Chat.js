@@ -9,10 +9,14 @@ import styles from "./Chat.module.css";
 
 const Chat = ({ name }) => {
   const [messages, setMessages] = useState([]);
-  const [users, setUsers] = useState([name]);
+  const [users, setUsers] = useState([{ name: name, typing: "" }]);
 
   const sendMessage = (message) => {
     socket.emit("message", name, message);
+  };
+
+  const typingMessage = () => {
+    socket.emit("typing", name, "Escribiendo mensaje");
   };
 
   useEffect(() => {
@@ -24,11 +28,35 @@ const Chat = ({ name }) => {
 
   useEffect(() => {
     socket.on("messages", (message) => {
-      console.log(33333, message);
+      if (message.type === "typing") {
+        setUsers((currentUsers) => {
+          return currentUsers.map((user) => {
+            if (user.name === message.name) {
+              return { name: user.name, typing: message.message };
+            }
+            return user;
+          });
+        });
+        return;
+      }
       setMessages((currentMessages) => [...currentMessages, message]);
+      setUsers((currentUsers) => {
+        return currentUsers.map((user) => {
+          if (user.name === message.name) {
+            return { name: user.name, typing: "" };
+          }
+          return user;
+        });
+      });
 
       if (message.type === "login") {
-        setUsers(message.users.map((user) => user.username));
+        let newUsers = [];
+        message.users.forEach((user) => {
+          if (user.username) {
+            newUsers.push({ name: user.username, typing: "" });
+          }
+        });
+        setUsers(newUsers);
       }
 
       if (message.type === "logout") {
@@ -78,7 +106,8 @@ const Chat = ({ name }) => {
                 className="nav-item"
                 style={{ borderBottom: "1px solid white" }}
               >
-                <span className="nav-link px-0 ms-1">{user}</span>
+                <span className="nav-link px-0 ms-1">{user.name}</span>
+                <span className="px-0 ms-1 text-white">{user.typing}</span>
               </li>
             ))}
         </ul>
@@ -89,7 +118,7 @@ const Chat = ({ name }) => {
           ☰ Conectados
         </button>
         <Messages data={messages} username={name} />
-        <FormMessage onMessage={sendMessage} />
+        <FormMessage onMessage={sendMessage} onTypingMeesage={typingMessage} />
       </div>
     </div>
   );

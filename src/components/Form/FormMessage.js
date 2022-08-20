@@ -3,11 +3,12 @@ import { MdSend } from "react-icons/md";
 
 import Card from "../UI/Card";
 
-const FormMessage = ({ onMessage }) => {
+const FormMessage = ({ onMessage, onTypingMeesage }) => {
   const [message, setMessage] = useState("");
 
   const handleSetMessage = (event) => {
     setMessage(event.target.value);
+    onTypingMeesage();
   };
 
   const handleSendMessage = (e) => {
