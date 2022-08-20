@@ -27,7 +27,7 @@ const FormMessage = ({ onMessage }) => {
     <Card>
       <form onSubmit={handleSendMessage}>
         <div className="row">
-          <div className="col-11">
+          <div className="col-8">
             <textarea
               className="form-control"
               placeholder="Introduzca su mensaje"
@@ -39,7 +39,7 @@ const FormMessage = ({ onMessage }) => {
               rows="2"
             ></textarea>
           </div>
-          <div className="col-1 items-content-center">
+          <div className="col-2 items-content-center">
             <h2>
               <MdSend onClick={handleSendMessage} />
             </h2>

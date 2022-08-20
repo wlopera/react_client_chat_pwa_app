@@ -20,22 +20,24 @@ const FormUser = () => {
   const context = register ? (
     <Chat name={name} />
   ) : (
-    <Card title="Conexión">
-      <form onSubmit={registerSubmit}>
-        <div className="mb-3 row">
-          <input
-            type="text"
-            id="name"
-            placeholder="Nombre de usuario"
-            value={name}
-            onChange={handleName}
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Ir al Chat
-        </button>
-      </form>
-    </Card>
+    <div style={{ width: "40%" }}>
+      <Card title="Conexión">
+        <form onSubmit={registerSubmit}>
+          <div className="mb-3 row">
+            <input
+              type="text"
+              id="name"
+              placeholder="Nombre de usuario"
+              value={name}
+              onChange={handleName}
+            />
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Ir al Chat
+          </button>
+        </form>
+      </Card>
+    </div>
   );
 
   return context;
