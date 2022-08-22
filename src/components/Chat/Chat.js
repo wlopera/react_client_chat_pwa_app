@@ -4,6 +4,7 @@ import { isMobile } from "react-device-detect";
 
 import FormMessage from "../Form/FormMessage";
 import Messages from "../UI/Messages";
+import { getMessage, openNav, closeNav } from "../../util/Utilities";
 
 import styles from "./Chat.module.css";
 
@@ -22,79 +23,31 @@ const Chat = ({ name }) => {
   useEffect(() => {
     if (name) {
       socket.emit("login", name);
-      closeNav();
+      handleCloseNav();
     }
   }, [name]);
 
   useEffect(() => {
     socket.on("messages", (message) => {
-      if (message.type === "typing") {
-        setUsers((currentUsers) => {
-          return currentUsers.map((user) => {
-            if (user.name === message.name) {
-              return { name: user.name, typing: message.message };
-            }
-            return user;
-          });
-        });
-        return;
-      } else if (message.type === "login") {
-        let newUsers = [];
-        message.users.forEach((user) => {
-          if (user.username) {
-            newUsers.push({ name: user.username, typing: "" });
-          }
-        });
-        setUsers(newUsers);
-        setMessages((currentMessages) => [...currentMessages, message]);
-      } else if (message.type === "logout") {
-        setMessages((currentMessages) => [...currentMessages, message]);
-        setUsers((currentUsers) =>
-          currentUsers.filter((user) => user.name !== message.name)
-        );
-        socket.off();
-      } else {
-        setMessages((currentMessages) => [...currentMessages, message]);
-        setUsers((currentUsers) => {
-          return currentUsers.map((user) => {
-            if (user.name === message.name) {
-              return { name: user.name, typing: "" };
-            }
-            return user;
-          });
-        });
-      }
+      getMessage(setUsers, setMessages, message);
     });
     return () => {
       socket.off();
     };
   });
 
-  const openNav = () => {
-    if (isMobile) {
-      document.getElementById("mySidebar").style.width = "35%";
-      document.getElementById("main").style.width = "65%";
-      document.getElementById("main").style.marginLeft = "35%";
-    } else {
-      document.getElementById("mySidebar").style.width = "15%";
-      document.getElementById("main").style.marginLeft = "15%";
-    }
+  const handleOpenNav = () => {
+    openNav(isMobile);
   };
 
-  const closeNav = () => {
-    if (isMobile) {
-      document.getElementById("main").style.width = "100%";
-    } else {
-      document.getElementById("main").style.marginLeft = "60%";
-    }
-    document.getElementById("mySidebar").style.width = "0";
-    document.getElementById("main").style.marginLeft = "0";
+  const handleCloseNav = () => {
+    closeNav(isMobile);
   };
 
   return (
     <div>
-      <div className={styles.sidebar} id="mySidebar">
-        <a href="#" className={styles.closebtn} onClick={closeNav}>
+      <div className={styles.sidebar} id="sidebar">
+        <a href="#" className={styles.closebtn} onClick={handleCloseNav}>
           ×
         </a>
         <ul className="" id="menu">
@@ -113,11 +66,11 @@ const Chat = ({ name }) => {
         <hr />
       </div>
       <div className={styles.main} id="main">
-        <button className={styles.openbtn} onClick={openNav}>
+        <button className={styles.openbtn} onClick={handleOpenNav}>
           ☰ Conectados
         </button>
         <Messages data={messages} username={name} />
-        <FormMessage onMessage={sendMessage} onTypingMeesage={typingMessage} />
+        <FormMessage onMessage={sendMessage} onTypingMessage={typingMessage} />
       </div>
     </div>
   );

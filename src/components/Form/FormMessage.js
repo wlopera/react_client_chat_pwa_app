@@ -3,12 +3,12 @@ import { MdSend } from "react-icons/md";
 
 import Card from "../UI/Card";
 
-const FormMessage = ({ onMessage, onTypingMeesage }) => {
+const FormMessage = ({ onMessage, onTypingMessage }) => {
   const [message, setMessage] = useState("");
 
   const handleSetMessage = (event) => {
     setMessage(event.target.value);
-    onTypingMeesage();
+    onTypingMessage();
   };
 
   const handleSendMessage = (e) => {
@@ -20,6 +20,7 @@ const FormMessage = ({ onMessage, onTypingMeesage }) => {
   const handleKeyPress = (e) => {
     if (e.keyCode === 13) {
       onMessage(message);
+      e.target.blur(); // Quitar el focus
       setMessage("");
     }
   };
