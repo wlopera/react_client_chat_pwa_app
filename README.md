@@ -129,3 +129,8 @@ export default Chat;
 ## Agregar entrada y salida de usuarios conectados y mensaje de los usuarios que estan escribiendo
 ![Captura](https://user-images.githubusercontent.com/7141537/186037776-c96674a4-8d44-46d5-a35c-71fe1a211271.PNG)
 
+## publicar en https://app.netlify.com/
+- Compilar proyecto repo master: npm run build
+- subir a Netlify
+![Captura](https://user-images.githubusercontent.com/7141537/186038178-a1b68427-506b-442d-a3ef-c0535f4e8577.PNG)
+
