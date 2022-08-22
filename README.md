@@ -125,3 +125,7 @@ const Chat = ({ name }) => {
 export default Chat;
 ```
 ![Captura](https://user-images.githubusercontent.com/7141537/185668298-23be0c28-ec15-4728-b50d-8d5e970dc9ed.PNG)
+
+## Agregar entrada y salida de usuarios conectados y mensaje de los usuarios que estan escribiendo
+![Captura](https://user-images.githubusercontent.com/7141537/186037776-c96674a4-8d44-46d5-a35c-71fe1a211271.PNG)
+
